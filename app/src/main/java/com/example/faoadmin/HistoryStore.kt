@@ -1,11 +1,4 @@
-package com.example.faoadmin
 
-import android.content.Context
-import org.json.JSONArray
-
-class HistoryStore(context: Context) {
-
-```
 private val preferences =
     context.getSharedPreferences("aviator_history", Context.MODE_PRIVATE)
 
@@ -38,7 +31,4 @@ fun getHistory(): List<Double> {
 
 fun count(): Int {
     return getHistory().size
-}
-```
-
 }
