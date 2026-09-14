@@ -1,14 +1,17 @@
-private val history = mutableListOf<Double>()
+data class Result(
+    val prediction: Double,
+    val confidence: Double
+)
 
-fun addMultiplier(value: Double): AnalysisEngine.Result? {
-    history.add(value)
-    return AnalysisEngine.analyze(history)
-}
+fun analyze(history: List<Double>): Result? {
+    if (history.isEmpty()) {
+        return null
+    }
 
-fun getHistoryCount(): Int {
-    return history.size
-}
+    val average = history.average()
 
-fun getCurrentResult(): AnalysisEngine.Result? {
-    return AnalysisEngine.analyze(history)
+    return Result(
+        prediction = average,
+        confidence = 0.5
+    )
 }
