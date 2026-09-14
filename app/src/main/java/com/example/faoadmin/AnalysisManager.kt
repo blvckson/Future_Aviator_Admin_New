@@ -2,7 +2,6 @@ private val history = mutableListOf<Double>()
 
 fun addMultiplier(value: Double): AnalysisEngine.Result? {
     history.add(value)
-
     return AnalysisEngine.analyze(history)
 }
 
