@@ -12,23 +12,20 @@ class MainActivity : AppCompatActivity() {
 override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    val layout = LinearLayout(this).apply {
-        orientation = LinearLayout.VERTICAL
-        gravity = Gravity.CENTER
-        setPadding(32, 32, 32, 32)
-    }
+    val layout = LinearLayout(this)
+    layout.orientation = LinearLayout.VERTICAL
+    layout.gravity = Gravity.CENTER
+    layout.setPadding(32, 32, 32, 32)
 
-    val title = TextView(this).apply {
-        text = "Future Aviator Admin"
-        textSize = 26f
-        gravity = Gravity.CENTER
-    }
+    val title = TextView(this)
+    title.text = "Future Aviator Admin"
+    title.textSize = 26f
+    title.gravity = Gravity.CENTER
 
-    val status = TextView(this).apply {
-        text = "\nAdmin dashboard ready"
-        textSize = 18f
-        gravity = Gravity.CENTER
-    }
+    val status = TextView(this)
+    status.text = "Admin dashboard ready"
+    status.textSize = 18f
+    status.gravity = Gravity.CENTER
 
     layout.addView(title)
     layout.addView(status)
