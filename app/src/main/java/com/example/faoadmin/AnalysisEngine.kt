@@ -1,35 +1,17 @@
-package com.example.faoadmin
+data class Result(
+    val prediction: Double,
+    val confidence: Double
+)
 
-import kotlin.math.sqrt
-
-object AnalysisEngine {
-
-    data class Result(
-        val low: Double,
-        val high: Double,
-        val sampleSize: Int
-    )
-
-    fun analyze(history: List<Double>): Result? {
-        val values = history.filter { it > 0.0 }
-
-        if (values.size < 20) return null
-
-        val mean = values.average()
-
-        val variance = values
-            .map { (it - mean) * (it - mean) }
-            .average()
-
-        val standardDeviation = sqrt(variance)
-
-        val low = (mean - standardDeviation).coerceAtLeast(1.00)
-        val high = mean + standardDeviation
-
-        return Result(
-            low = low,
-            high = high,
-            sampleSize = values.size
-        )
+fun analyze(history: List<Double>): Result? {
+    if (history.isEmpty()) {
+        return null
     }
+
+    val average = history.average()
+
+    return Result(
+        prediction = average,
+        confidence = 0.5
+    )
 }
