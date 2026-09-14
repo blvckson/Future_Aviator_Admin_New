@@ -7,25 +7,19 @@ fun addMultiplier(value: Double) {
     val history = getHistory().toMutableList()
     history.add(value)
 
-    val array = JSONArray()
-    history.forEach { array.put(it) }
-
     preferences.edit()
-        .putString(key, array.toString())
+        .putString(key, history.joinToString(","))
         .apply()
 }
 
 fun getHistory(): List<Double> {
-    val saved = preferences.getString(key, null) ?: return emptyList()
+    val saved = preferences.getString(key, "") ?: ""
 
-    return try {
-        val array = JSONArray(saved)
-        List(array.length()) { index ->
-            array.getDouble(index)
-        }
-    } catch (e: Exception) {
-        emptyList()
+    if (saved.isBlank()) {
+        return emptyList()
     }
+
+    return saved.split(",").mapNotNull { it.toDoubleOrNull() }
 }
 
 fun count(): Int {
