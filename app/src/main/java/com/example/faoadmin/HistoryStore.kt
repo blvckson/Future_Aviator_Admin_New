@@ -1,4 +1,3 @@
-
 private val preferences =
     context.getSharedPreferences("aviator_history", Context.MODE_PRIVATE)
 
