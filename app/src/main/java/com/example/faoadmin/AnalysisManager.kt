@@ -1,26 +1,15 @@
-package com.example.faoadmin
+private val history = mutableListOf<Double>()
 
-import android.content.Context
+fun addMultiplier(value: Double): AnalysisEngine.Result? {
+    history.add(value)
 
-class AnalysisManager(context: Context) {
+    return AnalysisEngine.analyze(history)
+}
 
-    private val historyStore = HistoryStore(context)
+fun getHistoryCount(): Int {
+    return history.size
+}
 
-    fun addMultiplier(value: Double): AnalysisEngine.Result? {
-        historyStore.addMultiplier(value)
-
-        return AnalysisEngine.analyze(
-            historyStore.getHistory()
-        )
-    }
-
-    fun getHistoryCount(): Int {
-        return historyStore.count()
-    }
-
-    fun getCurrentResult(): AnalysisEngine.Result? {
-        return AnalysisEngine.analyze(
-            historyStore.getHistory()
-        )
-    }
+fun getCurrentResult(): AnalysisEngine.Result? {
+    return AnalysisEngine.analyze(history)
 }
