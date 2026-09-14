@@ -5,7 +5,7 @@ import org.json.JSONArray
 
 class HistoryStore(context: Context) {
 
-
+```
 private val preferences =
     context.getSharedPreferences("aviator_history", Context.MODE_PRIVATE)
 
